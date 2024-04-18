@@ -1,5 +1,10 @@
 # Template APC Smart-UPS SmartConnect
 
+This script is forked from: https://github.com/lestoilfante/zabbix-integrations/tree/master/APC
+* I am editing the instructions for clarity.
+* The template has been adjusted for longer timeouts
+* php-cli is needed to run php scripts
+
 ## Overview
 
 This Zabbix template collects information from the APC SmartConnect Cloud platform, including voltage, current, power, status, temperature, battery usage, and relevant events.
