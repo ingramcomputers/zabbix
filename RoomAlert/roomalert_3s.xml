@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>7.0</version>
+    <template_groups>
+        <template_group>
+            <uuid>36bff6c29af64692839d077febfc7079</uuid>
+            <name>Templates/Network devices</name>
+        </template_group>
+        <template_group>
+            <uuid>3fee06b03e864694a14731c79491fd25</uuid>
+            <name>Templates TFB</name>
+        </template_group>
+    </template_groups>
+    <templates>
+        <template>
+            <uuid>044d1e834596459d966d1c8ef18b9b8f</uuid>
+            <template>RoomAlert 3S IT</template>
+            <name>RoomAlert 3S IT</name>
+            <groups>
+                <group>
+                    <name>Templates/Network devices</name>
+                </group>
+                <group>
+                    <name>Templates TFB</name>
+                </group>
+            </groups>
+            <items>
+                <item>
+                    <uuid>769dbc61bf894a81aaaeccb3a64befa8</uuid>
+                    <name>Dew Point (Ext)</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.20916.1.13.1.2.1.6.0</snmp_oid>
+                    <key>dewpoint</key>
+                    <history>90d</history>
+                    <value_type>FLOAT</value_type>
+                    <units>°C</units>
+                    <preprocessing>
+                        <step>
+                            <type>MULTIPLIER</type>
+                            <parameters>
+                                <parameter>0.01</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                </item>
+                <item>
+                    <uuid>a38707c0d6fe45c0819be281d8f80c95</uuid>
+                    <name>Flood Sensor</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.20916.1.13.1.3.1.0</snmp_oid>
+                    <key>Flood</key>
+                    <valuemap>
+                        <name>Flood Sensor</name>
+                    </valuemap>
+                    <triggers>
+                        <trigger>
+                            <uuid>8c2a45b895b74bd6ab545842319d18c5</uuid>
+                            <expression>last(/RoomAlert 3S IT/Flood)=0</expression>
+                            <name>Water Detected</name>
+                            <priority>DISASTER</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>85b338b484824d0e9eb08bb346caea29</uuid>
+                    <name>Heat Index (Ext)</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.20916.1.13.1.2.1.4.0</snmp_oid>
+                    <key>heatindex</key>
+                    <history>90d</history>
+                    <value_type>FLOAT</value_type>
+                    <units>°C</units>
+                    <preprocessing>
+                        <step>
+                            <type>MULTIPLIER</type>
+                            <parameters>
+                                <parameter>0.01</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                </item>
+                <item>
+                    <uuid>719e4f4c58434fdca834b3cc0a8251e3</uuid>
+                    <name>Relative Humidity (Ext)</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.20916.1.13.1.2.1.3.0</snmp_oid>
+                    <key>rh</key>
+                    <history>90d</history>
+                    <value_type>FLOAT</value_type>
+                    <units>%</units>
+                    <preprocessing>
+                        <step>
+                            <type>MULTIPLIER</type>
+                            <parameters>
+                                <parameter>0.01</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <triggers>
+                        <trigger>
+                            <uuid>2a67b5f1bc0f4437ae74053a6e4710ee</uuid>
+                            <expression>last(/RoomAlert 3S IT/rh)&gt;62</expression>
+                            <name>Humidity is too high &gt; 60%</name>
+                            <priority>AVERAGE</priority>
+                            <description>Relative Humidity should between 40% to 60%</description>
+                        </trigger>
+                        <trigger>
+                            <uuid>1c392ac0e0444ed7bbf347d3d33f9237</uuid>
+                            <expression>last(/RoomAlert 3S IT/rh)&lt;24</expression>
+                            <name>Humidity is too low &lt; 25%</name>
+                            <priority>AVERAGE</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>a9443a40c5904444a0fe751d42a5e280</uuid>
+                    <name>Model</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.2.1.1.1.0</snmp_oid>
+                    <key>sysDescr</key>
+                    <history>30d</history>
+                    <value_type>TEXT</value_type>
+                    <trends>0</trends>
+                    <inventory_link>MODEL</inventory_link>
+                </item>
+                <item>
+                    <uuid>cf746676b5bf45679498c0bf9acb7c57</uuid>
+                    <name>Location</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.2.1.1.6.0</snmp_oid>
+                    <key>sysLocation</key>
+                    <history>30d</history>
+                    <value_type>TEXT</value_type>
+                    <trends>0</trends>
+                    <inventory_link>LOCATION</inventory_link>
+                </item>
+                <item>
+                    <uuid>6238c12ccb644d799bb49103085412e6</uuid>
+                    <name>Hostname</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.2.1.1.5.0</snmp_oid>
+                    <key>sysName</key>
+                    <history>30d</history>
+                    <value_type>TEXT</value_type>
+                    <trends>0</trends>
+                </item>
+                <item>
+                    <uuid>d1fd61d1de2946d0949bf43317455ad5</uuid>
+                    <name>Temp °C (Int)</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.20916.1.13.1.1.1.2.0</snmp_oid>
+                    <key>temperatureCelciusExt</key>
+                    <history>90d</history>
+                    <value_type>FLOAT</value_type>
+                    <units>°C</units>
+                    <description>Temperature reading from the External thermometer</description>
+                    <preprocessing>
+                        <step>
+                            <type>MULTIPLIER</type>
+                            <parameters>
+                                <parameter>0.01</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <triggers>
+                        <trigger>
+                            <uuid>5b1d039720ab476ba75208eb49373604</uuid>
+                            <expression>last(/RoomAlert 3S IT/temperatureCelciusExt)&gt;35</expression>
+                            <name>Critical Temp Ext</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                        <trigger>
+                            <uuid>a07eee658e994225aa775075c0741732</uuid>
+                            <expression>last(/RoomAlert 3S IT/temperatureCelciusExt)&gt;30</expression>
+                            <name>High Temp Ext</name>
+                            <priority>AVERAGE</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>9b7beae1d51b48b5954a87e712644d5d</uuid>
+                    <name>Temp °F (Int)</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.20916.1.13.1.1.1.1.0</snmp_oid>
+                    <key>temperatureF</key>
+                    <history>90d</history>
+                    <value_type>FLOAT</value_type>
+                    <units>°F</units>
+                    <description>Temperature reading from the internal thermometer</description>
+                    <preprocessing>
+                        <step>
+                            <type>MULTIPLIER</type>
+                            <parameters>
+                                <parameter>0.01</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <triggers>
+                        <trigger>
+                            <uuid>147ce186cc3b47aca8653bb3874659ec</uuid>
+                            <expression>last(/RoomAlert 3S IT/temperatureF)&gt;35</expression>
+                            <name>Critical Temp Int</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                        <trigger>
+                            <uuid>5922e30696a941b4a607925a05d15fa0</uuid>
+                            <expression>last(/RoomAlert 3S IT/temperatureF)&gt;30</expression>
+                            <name>High Temp Int</name>
+                            <priority>AVERAGE</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>97fef1cfe0f14094af5698b7e885fc54</uuid>
+                    <name>Uptime</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.2.1.1.3.0</snmp_oid>
+                    <key>uptime</key>
+                    <history>2w</history>
+                    <trends>0</trends>
+                    <units>uptime</units>
+                    <preprocessing>
+                        <step>
+                            <type>MULTIPLIER</type>
+                            <parameters>
+                                <parameter>0.01</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                </item>
+            </items>
+            <valuemaps>
+                <valuemap>
+                    <uuid>4929824c5a3b4d7ba26a96516e2f3ebe</uuid>
+                    <name>Flood Sensor</name>
+                    <mappings>
+                        <mapping>
+                            <value>1</value>
+                            <newvalue>OK</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>0</value>
+                            <newvalue>Water Detected</newvalue>
+                        </mapping>
+                    </mappings>
+                </valuemap>
+            </valuemaps>
+        </template>
+    </templates>
+    <graphs>
+        <graph>
+            <uuid>5ec629c674a948e999a2a2aaf6e8d87f</uuid>
+            <name>Temperature Celcius</name>
+            <graph_items>
+                <graph_item>
+                    <color>1A7C11</color>
+                    <item>
+                        <host>RoomAlert 3S IT</host>
+                        <key>temperatureF</key>
+                    </item>
+                </graph_item>
+            </graph_items>
+        </graph>
+    </graphs>
+</zabbix_export>
